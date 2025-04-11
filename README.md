@@ -46,3 +46,34 @@ kubectl create secret docker-registry application-collection \
    --docker-password=$APPCO_PASSWORD \
    -n suse-ai
 ```
+
+
+## Part 2: Deploy all the SUSE AI Apps:
+
+```
+cat << EOF > suse-ai-apps.yaml
+apiVersion: fleet.cattle.io/v1alpha1
+kind: GitRepo
+metadata:
+  name: suse-ai-apps
+  namespace: fleet-local
+spec:
+  repo: "https://github.com/dieterreuter/suse-ai-lab"
+  branch: main
+  helmSecretName: application-collection
+  helmRepoURLRegex: (oci|https)://dp.apps.rancher.io/*
+  paths:
+  - apps/ollama
+  - apps/milvus
+  - apps/open-webui
+EOF
+
+kubectl apply -f suse-ai-apps.yaml
+```
+
+## Part 3: Just delete everything - cleanup:
+
+```
+kubectl delete namespace suse-ai
+kubectl delete secret application-collection -n fleet-local
+```
