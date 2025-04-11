@@ -5,7 +5,3 @@ helm:
   releaseName: ollama
   valuesFiles:
     - values.yaml
-dependsOn:
-  - selector:
-      matchLabels:
-        provides: application-collection
