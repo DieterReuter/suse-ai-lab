@@ -1,0 +1,46 @@
+global:
+  imagePullSecrets:
+  - application-collection
+cluster:
+  enabled: false
+standalone:
+  persistence:
+    persistentVolumeClaim:
+      storageClass: local-path
+pulsar:
+  enabled: false
+
+pulsarv3:
+  enabled: false
+
+etcd:
+  replicaCount: 1
+  persistence:
+    storageClassName: local-path
+minio:
+  enabled: true
+  mode: standalone
+  replicas: 1
+  tls:
+    enabled: false
+
+kafka:
+  enabled: false
+  name: kafka
+  replicaCount: 3
+  broker:
+    enabled: true
+  cluster:
+    listeners:
+      client:
+        protocol: 'PLAINTEXT'
+      controller:
+        protocol: 'PLAINTEXT'
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 8Gi
+    storageClassName: "local-path" 
