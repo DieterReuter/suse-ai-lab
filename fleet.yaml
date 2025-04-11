@@ -1,0 +1,5 @@
+namespace: fleet-default
+targetCustomizations:
+- name: suse-ai-lab
+  clusterSelector:
+    clusterName: suse-ai-lab
