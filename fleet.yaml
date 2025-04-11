@@ -1,6 +1,0 @@
-namespace: fleet-local
-targetCustomizations:
-- name: suse-ai-lab
-  clusterSelector:
-    matchLabels:
-      environment: production
