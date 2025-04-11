@@ -1,6 +1,5 @@
 defaultNamespace: suse-ai
 helm:
-  helmSecretName: application-collection
   chart: oci://dp.apps.rancher.io/charts/ollama
   version: 0.63.0
   releaseName: ollama
